@@ -114,15 +114,15 @@ void ExceptionHandler(ExceptionType which)
 			DEBUG(dbgSys, "Read a string\n");
 			SysReadString((char *)kernel->machine->ReadRegister(4), (int)kernel->machine->ReadRegister(5));
 			// Debug
-			// int c, cnt;
-			// cnt = 0;
-			// while (true)
-			// {
-			// 	kernel->machine->ReadMem(kernel->machine->ReadRegister(4) + cnt++, 1, &c);
-			// 	if (char(c) == '\0')
-			// 		break;
-			// 	DEBUG(dbgSys, char(c));
-			// }
+			int c, cnt;
+			cnt = 0;
+			while (true)
+			{
+				kernel->machine->ReadMem(kernel->machine->ReadRegister(4) + cnt++, 1, &c);
+				if (char(c) == '\0')
+					break;
+				DEBUG(dbgSys, char(c));
+			}
 			IncreasePC();
 			return;
 			break;
