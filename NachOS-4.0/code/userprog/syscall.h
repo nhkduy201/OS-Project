@@ -37,6 +37,7 @@
 
 #define SC_Add 42
 #define SC_PrintNum 43
+#define SC_ReadString 44
 
 #ifndef IN_ASM
 
@@ -62,6 +63,10 @@ int Add(int op1, int op2);
 /* Print a integer */
 
 void PrintNum(int number);
+
+/* Print a integer */
+
+void ReadString(char *buffer, int lenght);
 
 /* Address space control operations: Exit, Exec, Execv, and Join */
 

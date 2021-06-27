@@ -50,4 +50,18 @@ void SysPrintNum(int number)
   kernel->synchConsoleOut->PutChar('\n');
 }
 
+void SysReadString(char *buffer, int len)
+{
+  int i = 0;
+  char data;
+  while (i < len)
+  {
+    data = kernel->synchConsoleIn->GetChar();
+    if (data == '\n')
+      break;
+    kernel->machine->WriteMem((int)buffer + i, 1, (int)data);
+    i++;
+  }
+}
+
 #endif /* ! __USERPROG_KSYSCALL_H__ */
