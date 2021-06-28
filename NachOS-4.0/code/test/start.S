@@ -76,6 +76,15 @@ ReadString:
 
 	.globl Exit
 	.ent	Exit
+	
+	.globl PrintChar
+	.ent PrintChar
+PrintChar:
+	addiu $2,$0,SC_PrintChar
+	syscall
+	j 	$31
+	.end PrintChar
+
 Exit:
 	addiu $2,$0,SC_Exit
 	syscall
