@@ -126,6 +126,16 @@ void ExceptionHandler(ExceptionType which)
 			IncreasePC();
 			return;
 			break;
+		case SC_PrintChar:
+			DEBUG(dbgSys, "Print char " << "\n");
+			writeDone->P() ;
+        		console->PutChar(machine->ReadRegister(4));
+			machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+			machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
+			machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+			IncreasePC();
+			return;
+			break;
 		default:
 			cerr << "Unexpected system call " << type << "\n";
 			break;
