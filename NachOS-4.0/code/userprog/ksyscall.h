@@ -71,9 +71,9 @@ void SysReadString(char *buffer, int len)
   machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
   machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
-void SysPrintChar(){
+void SysPrintChar(char c){
   writeDone->P() ;
-  console->PutChar(machine->ReadRegister(4)));
+  kernel->synchConsoleOut->PutChar(c);
   
   machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
   machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
