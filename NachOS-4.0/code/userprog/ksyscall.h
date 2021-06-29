@@ -49,9 +49,9 @@ void SysPrintNum(int number)
   }
   kernel->synchConsoleOut->PutChar('\n');
   
-  kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
-  kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
-  kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+//   kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
 
 void SysReadString(char *buffer, int len)
@@ -67,16 +67,16 @@ void SysReadString(char *buffer, int len)
     i++;
   }
   
-  kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
-  kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
-  kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+//   kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
 void SysPrintChar(char c){
   writeDone->P() ;
   kernel->synchConsoleOut->PutChar(c);
   
-  kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
-  kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
-  kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+//   kernel->machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg)+4);
+//   kernel->machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
 #endif /* ! __USERPROG_KSYSCALL_H__ */
