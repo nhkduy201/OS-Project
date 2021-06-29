@@ -129,7 +129,7 @@ void ExceptionHandler(ExceptionType which)
 
 		case SC_PrintChar:
 			DEBUG(dbgSys, "[Breakpoint] Print char: ";
-			SysPrintChar(machine->ReadRegister(4));
+			SysPrintChar(kernal->machine->ReadRegister(4));
 			
 			IncreasePC();
 			return;
