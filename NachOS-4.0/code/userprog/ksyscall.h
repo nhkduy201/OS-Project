@@ -48,6 +48,10 @@ void SysPrintNum(int number)
     number %= powOfTen;
   }
   kernel->synchConsoleOut->PutChar('\n');
+  
+  machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+  machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
+  machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
 
 void SysReadString(char *buffer, int len)
@@ -62,6 +66,17 @@ void SysReadString(char *buffer, int len)
     kernel->machine->WriteMem((int)buffer + i, 1, (int)data);
     i++;
   }
+  
+  machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+  machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
+  machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
 }
-
+void SysPrintChar(){
+  writeDone->P() ;
+  console->PutChar(machine->ReadRegister(4)));
+  
+  machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+  machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
+  machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+}
 #endif /* ! __USERPROG_KSYSCALL_H__ */
