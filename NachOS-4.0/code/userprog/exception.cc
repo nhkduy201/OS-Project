@@ -126,13 +126,11 @@ void ExceptionHandler(ExceptionType which)
 			IncreasePC();
 			return;
 			break;
+
 		case SC_PrintChar:
-			DEBUG(dbgSys, "Print char " << "\n");
-			writeDone->P() ;
-        		console->PutChar(machine->ReadRegister(4));
-			machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
-			machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
-			machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg)+4);
+			DEBUG(dbgSys, "[Breakpoint] Print char: ";
+			SysPrintChar(machine->ReadRegister(4));
+			
 			IncreasePC();
 			return;
 			break;
