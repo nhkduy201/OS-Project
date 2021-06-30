@@ -133,8 +133,8 @@ void ExceptionHandler(ExceptionType which)
 			break;
 
 		case SC_PrintChar:
-			DEBUG(dbgSys, "[Breakpoint] Print char: ";
-			SysPrintChar(kernel->machine->ReadRegister(4));
+			writeDone->P() ;
+        		console->PutChar(kernel->machine->ReadRegister(4));
 			
 			IncreasePC();
 			return;
