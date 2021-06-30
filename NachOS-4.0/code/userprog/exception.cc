@@ -138,7 +138,8 @@ void ExceptionHandler(ExceptionType which)
 
 		case SC_PrintString:
 			int vaddr = kernel->machine->ReadRegister(4);
-			int memval; 
+			int memval;
+			
        			kernel->machine->ReadMem(vaddr, 1, &memval);
        			while ((*(char*)&memval) != '\0') {
 				writeDone->P() ;
