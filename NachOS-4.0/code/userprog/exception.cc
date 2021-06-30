@@ -26,6 +26,10 @@
 #include "synchconsole.h"
 #include "syscall.h"
 #include "ksyscall.h"
+#include "console.h"
+#include "thread.h"
+#include "system.h"
+
 //----------------------------------------------------------------------
 // ExceptionHandler
 // 	Entry point into the Nachos kernel.  Called when a user program
