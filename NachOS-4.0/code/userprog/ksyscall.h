@@ -69,14 +69,5 @@ void SysPrintChar(char c){
   writeDone->P() ;
   kernel->synchConsoleOut->PutChar(c);
 }
-
-void SysPrintString(char* c, int length){
-  int i = 0;
-  while (i < length)
-  {
-    kernel->synchConsoleIn->PutChar(c[i);
-    i++;
-  }
-}
                                       
 #endif /* ! __USERPROG_KSYSCALL_H__ */
