@@ -28,7 +28,7 @@
 #include "ksyscall.h"
 #include "console.h"
 #include "thread.h"
-#include "system.h"
+#include "synch.h"
 
 //----------------------------------------------------------------------
 // ExceptionHandler
@@ -66,6 +66,8 @@ void IncreasePC()
 		kernel->machine->WriteRegister(NextPCReg, kernel->machine->ReadRegister(PCReg) + 4);
 	}
 }
+
+static Semaphore *writeDone;
 
 void ExceptionHandler(ExceptionType which)
 {
@@ -130,15 +132,14 @@ void ExceptionHandler(ExceptionType which)
 			
 			IncreasePC();
 			return;
-			break;
-
+		
+	break;
 		case SC_PrintChar:
 			writeDone->P() ;
-        		console->PutChar(kernel->machine->ReadRegister(4));
+        		kernel->synchConsoleOut->PutChar(kernel->machine->ReadRegister(4));
 			
 			IncreasePC();
 			return;
-			break;
 
 		case SC_PrintString:
 			int vaddr = kernel->machine->ReadRegister(4);
@@ -154,7 +155,6 @@ void ExceptionHandler(ExceptionType which)
 			
 			IncreasePC();
 			return;
-			break;
 
 		default:
 			cerr << "Unexpected system call " << type << "\n";
