@@ -72,11 +72,9 @@ void SysPrintChar(char c){
 
 void SysPrintChar(char* c, int length){
   int i = 0;
-  while (i < len)
+  while (i < length)
   {
     kernel->synchConsoleIn->PutChar(c[i);
-    if (data == '\n')
-      break;
     i++;
   }
 }
