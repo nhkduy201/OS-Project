@@ -68,10 +68,5 @@ void SysReadString(char *buffer, int len)
 static void WriteDone(int arg) {
   writeDone->V();
 }
-
-void SysPrintChar(char c){
-  writeDone->P() ;
-  kernel->synchConsoleOut->PutChar(c);
-}
                                       
 #endif /* ! __USERPROG_KSYSCALL_H__ */
