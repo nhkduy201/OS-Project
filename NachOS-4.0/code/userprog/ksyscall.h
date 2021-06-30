@@ -70,7 +70,7 @@ void SysPrintChar(char c){
   kernel->synchConsoleOut->PutChar(c);
 }
 
-void SysPrintChar(char* c, int length){
+void SysPrintString(char* c, int length){
   int i = 0;
   while (i < length)
   {
