@@ -141,7 +141,7 @@ void ExceptionHandler(ExceptionType which)
        			kernel->machine->ReadMem(vaddr, 1, &memval);
        			while ((*(char*)&memval) != '\0') {
 				writeDone->P() ;
-				console->PutChar(*(char*)&memval);
+				kernel->synchConsoleOut->PutChar(*(char*)&memval);
 				vaddr++;
 				kernel->machine->ReadMem(vaddr, 1, &memval);
 			}
