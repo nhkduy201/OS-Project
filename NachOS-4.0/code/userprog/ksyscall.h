@@ -64,9 +64,5 @@ void SysReadString(char *buffer, int len)
     i++;
   }
 }
-
-static void WriteDone(int arg) {
-  writeDone->V();
-}
                                       
 #endif /* ! __USERPROG_KSYSCALL_H__ */
