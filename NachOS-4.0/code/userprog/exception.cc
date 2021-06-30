@@ -123,6 +123,7 @@ void ExceptionHandler(ExceptionType which)
 					break;
 				DEBUG(dbgSys, char(c));
 			}
+			
 			IncreasePC();
 			return;
 			break;
@@ -134,6 +135,21 @@ void ExceptionHandler(ExceptionType which)
 			IncreasePC();
 			return;
 			break;
+
+		case SC_PrintString:
+			vaddr = kernel->machine->ReadRegister(4);
+       			kernel->machine->ReadMem(vaddr, 1, &memval);
+       			while ((*(char*)&memval) != '\0') {
+				writeDone->P() ;
+				console->PutChar(*(char*)&memval);
+				vaddr++;
+				kernel->machine->ReadMem(vaddr, 1, &memval);
+			}
+			
+			IncreasePC();
+			return;
+			break;
+
 		default:
 			cerr << "Unexpected system call " << type << "\n";
 			break;
