@@ -166,8 +166,29 @@ void ExceptionHandler(ExceptionType which)
 			
 			IncreasePC();
 			return;
+			break;
+
+		case SC_ReadChar:
+			//Input: none
+			//Output: 1 char
+			//Usage: Read a character inputed by user
+
+			DEBUG(dbgSys, "Read a character:\n");
+			SysReadChar((char *)kernel->machine->ReadRegister(4));
+			// Debug
+
+			//Read the char into a value
+			int c;
+			kernel->machine->ReadMem(kernel->machine->ReadRegister(4), 1, &c);
 		
-	break;
+			//Display the char
+			DEBUG(dbgSys, char(c));
+			
+			IncreasePC(); // error system
+			return;
+			break;
+
+			
 		case SC_PrintChar:
 			writeDone->P() ;
         		kernel->synchConsoleOut->PutChar(kernel->machine->ReadRegister(4));

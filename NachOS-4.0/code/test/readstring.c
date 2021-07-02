@@ -6,9 +6,12 @@
 
 int main()
 {
-  int len = 10;
-  char str[10];
-  ReadString(str, len);
+  // int len = 10;
+  // char str[10];
+  // ReadString(str, len);
+
+  ReadChar();
+
   Halt();
   /* not reached */
 }
