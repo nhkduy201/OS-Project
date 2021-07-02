@@ -40,6 +40,7 @@
 #define SC_ReadString 44
 #define SC_PrintChar 45
 #define SC_PrintString 46
+#define SC_ReadNum 47
 
 #ifndef IN_ASM
 
@@ -61,6 +62,10 @@ void Halt();
  */
 
 int Add(int op1, int op2);
+
+/* Print a integer */
+
+void ReadNum();
 
 /* Print a integer */
 

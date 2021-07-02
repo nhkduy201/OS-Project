@@ -109,6 +109,40 @@ void ExceptionHandler(ExceptionType which)
 
 			break;
 
+		case SC_ReadNum:
+			DEBUG(dbgSys, "Read Number: \n");
+			SysReadString((char *)kernel->machine->ReadRegister(4), (int)kernel->machine->ReadRegister(5));
+
+			int number = 0;
+			int nDigit = 0;
+			int i;
+			int c;
+			char bufer[9];
+			int cnt = 0;
+			while (true)
+			{
+				kernel->machine->ReadMem(kernel->machine->ReadRegister(4) + cnt++, 1, &c);
+				if (char(c) == '\0')
+					break;
+
+				char(c) = bufer[cnt-1];
+				DEBUG(dbgSys, char(c));
+			}
+			
+			i = bufer[0] == '-' ? 1:0 ;
+			for (; i < nDigit; ++i)
+			{
+				number = number*10 + (int) (bufer[i] & 0xF);
+			}
+
+			number = bufer[0] == '-' ? -1*number : number;
+			kernel->machine->WriteRegister(2, number);
+			delete bufer;
+
+			IncreasePC();
+			return;
+			break;
+
 		case SC_PrintNum:
 			DEBUG(dbgSys, "Print a integer: " << kernel->machine->ReadRegister(4) << "\n");
 			SysPrintNum((int)kernel->machine->ReadRegister(4));
@@ -148,8 +182,10 @@ void ExceptionHandler(ExceptionType which)
        			kernel->machine->ReadMem(vaddr, 1, &memval);
        			while ((*(char*)&memval) != '\0') {
 				writeDone->P() ;
+
 				kernel->synchConsoleOut->PutChar(*(char*)&memval);
 				vaddr++;
+
 				kernel->machine->ReadMem(vaddr, 1, &memval);
 			}
 			
