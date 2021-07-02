@@ -59,7 +59,15 @@ Add:
 	.end Add
 
 	.globl PrintNum
-	.ent	PrintNum
+	.ent PrintNum
+ReadNum:
+	addiu $2,$0,SC_ReadNum
+	syscall
+	j 	$31
+	.end ReadNum
+
+	.globl PrintNum
+	.ent PrintNum
 PrintNum:
 	addiu $2,$0,SC_PrintNum
 	syscall
