@@ -91,7 +91,7 @@ void PrintString(char *c);
 
 /* Random Number */
 
-void RandomNum();
+int RandomNum();
 
 /* Address space control operations: Exit, Exec, Execv, and Join */
 

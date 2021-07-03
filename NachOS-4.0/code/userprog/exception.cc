@@ -181,7 +181,7 @@ void ExceptionHandler(ExceptionType which)
 				//write to register
 				kernel->machine->WriteRegister(2, c);
 				// Debug
-				DEBUG(dbgSys, char(c));
+				DEBUG(dbgSys, "The char readed: " << char(c));
 
 				IncreasePC();
 				return;
@@ -216,10 +216,10 @@ void ExceptionHandler(ExceptionType which)
 
 		case SC_RandomNum:
 		{
-			int random = RandomNumber();
+			int random = (int)RandomNumber();
 			kernel->machine->WriteRegister(2, random);
 
-			DEBUG(dbgSys, char(random));
+			DEBUG(dbgSys, "The random number: " << random);
 
 			IncreasePC();
 			return;
