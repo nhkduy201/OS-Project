@@ -66,7 +66,7 @@ int Add(int op1, int op2);
 
 /* Read an integer */
 
-void ReadNum();
+int ReadNum();
 
 /* Print an integer */
 
@@ -86,7 +86,7 @@ void ReadString(char *buffer, int lenght);
 
 /* Print string */
 
-void PrintString(char* c, int length);
+void PrintString(char *c, int length);
 
 /* Address space control operations: Exit, Exec, Execv, and Join */
 
