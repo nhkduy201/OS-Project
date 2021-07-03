@@ -154,6 +154,20 @@ readstring: readstring.o start.o
 	$(LD) $(LDFLAGS) start.o readstring.o -o readstring.coff
 	$(COFF2NOFF) readstring.coff readstring
 
+printchar.o: printchar.c
+	$(CC) $(CFLAGS) -c printchar.c
+
+printchar: printchar.o start.o
+	$(LD) $(LDFLAGS) start.o printchar.o -o printchar.coff
+	$(COFF2NOFF) printchar.coff printchar
+
+printstring.o: printstring.c
+	$(CC) $(CFLAGS) -c printstring.c
+
+printstring: printstring.o start.o
+	$(LD) $(LDFLAGS) start.o printstring.o -o printstring.coff
+	$(COFF2NOFF) printstring.coff printstring
+	
 shell.o: shell.c
 	$(CC) $(CFLAGS) -c shell.c
 shell: shell.o start.o
