@@ -41,6 +41,7 @@
 #define SC_PrintChar 45
 #define SC_PrintString 46
 #define SC_ReadNum 47
+#define SC_ReadChar 48
 
 #ifndef IN_ASM
 
@@ -63,21 +64,25 @@ void Halt();
 
 int Add(int op1, int op2);
 
-/* Print a integer */
+/* Read an integer */
 
 void ReadNum();
 
-/* Print a integer */
+/* Print an integer */
 
 void PrintNum(int number);
 
-/* Print a integer */
+/* Read a character inputed by user */
 
-void ReadString(char *buffer, int lenght);
+char ReadChar();
 
 /* Print char */
 
 void PrintChar(char c);
+
+/* Read a string */
+
+void ReadString(char *buffer, int lenght);
 
 /* Print string */
 

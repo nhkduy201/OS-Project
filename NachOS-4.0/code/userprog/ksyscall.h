@@ -64,5 +64,16 @@ void SysReadString(char *buffer, int len)
     i++;
   }
 }
-                                      
+
+// void SysReadChar(char *buffer)
+// {
+//   char data;
+
+//   //get char inputed from "keyboard" to 'data'
+//   data = kernel->synchConsoleIn->GetChar();
+
+//   //Record 1 unit (byte) of 'data' into buffer
+//   kernel->machine->WriteMem((int)buffer, 1, (int)data); 
+// }
+
 #endif /* ! __USERPROG_KSYSCALL_H__ */
