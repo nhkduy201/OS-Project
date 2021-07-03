@@ -67,7 +67,7 @@ int Add(int op1, int op2);
 
 /* Read an integer */
 
-void ReadNum();
+int ReadNum();
 
 /* Print an integer */
 
