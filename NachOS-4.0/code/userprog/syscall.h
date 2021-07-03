@@ -42,6 +42,7 @@
 #define SC_PrintString 46
 #define SC_ReadNum 47
 #define SC_ReadChar 48
+#define SC_RandomNum 49
 
 #ifndef IN_ASM
 
@@ -87,6 +88,10 @@ void ReadString(char *buffer, int lenght);
 /* Print string */
 
 void PrintString(char* c, int length);
+
+/* Random Number */
+
+void RandomNum();
 
 /* Address space control operations: Exit, Exec, Execv, and Join */
 
