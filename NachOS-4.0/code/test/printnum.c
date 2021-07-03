@@ -8,7 +8,7 @@ int main()
 {
 
   PrintNum(-1);
-
+  
   Halt();
   /* not reached */
 }
