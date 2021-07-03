@@ -141,7 +141,6 @@ void ExceptionHandler(ExceptionType which)
 
 			IncreasePC();
 			return;
-			break;
 
 		case SC_PrintNum:
 			DEBUG(dbgSys, "Print a integer: " << kernel->machine->ReadRegister(4) << "\n");
