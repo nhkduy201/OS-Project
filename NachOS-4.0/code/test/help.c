@@ -8,7 +8,14 @@
 int main()
 {
     char* help = ""; 
-    help = "\\\\\t-sort.c-\t//\n\
+    help = "|\t\tGroup OS\t\t|\n\
+    Members:\n\
+    \tNGUYỄN HUỲNH KHÁNH DUY - 19127377\n\
+    \tTÔ VŨ THÁI HÀO - 19127391\n\
+    \tNGUYỄN QUANG THUẬN -\n\
+    \tHỒ THIÊN PHƯỚC-\n\
+    \n\
+    \t||\t-sort.c-\t//\n\
     *\tTest program to sort a large number of integers.\n\
     *\n\
     *\tIntention is to stress virtual memory system.\n\
@@ -16,7 +23,7 @@ int main()
     *\tIdeally, we could read the unsorted array off of the file system,\
     *\tand store the result back to the file system!";
 
-    PrintString(help,6);
+    PrintString(help);
 
     Halt();
     /* not reached */
