@@ -95,7 +95,7 @@ void ExceptionHandler(ExceptionType which)
 			/* Process SysAdd Systemcall*/
 			int result;
 			result = SysAdd(/* int op1 */ (int)kernel->machine->ReadRegister(4),
-						/* int op2 */ (int)kernel->machine->ReadRegister(5));
+											/* int op2 */ (int)kernel->machine->ReadRegister(5));
 			DEBUG(dbgSys, "Add returning with " << result << "\n");
 			/* Prepare Result */
 			kernel->machine->WriteRegister(2, (int)result);
@@ -123,24 +123,24 @@ void ExceptionHandler(ExceptionType which)
 				if (char(c) == '\0')
 					break;
 
-				bufer[cnt-1] = char(c);
+				bufer[cnt - 1] = char(c);
 				DEBUG(dbgSys, char(c));
 			}
-			
-			i = bufer[0] == '-' ? 1:0 ;
+
+			i = bufer[0] == '-' ? 1 : 0;
 			for (; i < nDigit; ++i)
 			{
-				number = number*10 + (int) (bufer[i] & 0xF);
+				number = number * 10 + (int)(bufer[i] & 0xF);
 			}
 
-			number = bufer[0] == '-' ? -1*number : number;
+			number = bufer[0] == '-' ? -1 * number : number;
 			kernel->machine->WriteRegister(2, number);
 			delete bufer;
 
 			IncreasePC();
 			return;
 		}
-			break;
+		break;
 
 		case SC_PrintNum:
 			DEBUG(dbgSys, "Print a integer: " << kernel->machine->ReadRegister(4) << "\n");
@@ -163,63 +163,58 @@ void ExceptionHandler(ExceptionType which)
 					break;
 				DEBUG(dbgSys, char(c));
 			}
-			
+
 			IncreasePC();
 			return;
 		}
-			break;
+		break;
 
 		case SC_ReadChar:
 			//Input: none
 			//Output: 1 char
 			//Usage: Read a character inputed by user
-		{
-			DEBUG(dbgSys, "Read a character:\n");
-			SysReadString((char *)kernel->machine->ReadRegister(4), 1); //Read 1 char from arg
-			//SysReadChar((char *)kernel->machine->ReadRegister(4));
-			// Debug
+			{
+				DEBUG(dbgSys, "Read a character:\n");
 
-			//Read the char into a value
-			int c;
-			kernel->machine->ReadMem(kernel->machine->ReadRegister(4), 1, &c);
-			
-			//write to register
-			kernel->machine->WriteRegister(2, c);
-			DEBUG(dbgSys, char(c));
-			
-			IncreasePC(); 
-			return;
-		}
+				//Read the char into a value
+				char c = kernel->synchConsoleIn->GetChar();
+
+				//write to register
+				kernel->machine->WriteRegister(2, c);
+				// Debug
+				DEBUG(dbgSys, char(c));
+
+				IncreasePC();
+				return;
+			}
 			break;
 
-			
 		case SC_PrintChar:
-			writeDone->P() ;
-        		kernel->synchConsoleOut->PutChar(kernel->machine->ReadRegister(4));
-			
+			kernel->synchConsoleOut->PutChar(kernel->machine->ReadRegister(4));
+
 			IncreasePC();
 			return;
 
 		case SC_PrintString:
-		{	
+		{
 			int vaddr = kernel->machine->ReadRegister(4);
 			int memval;
-			
-       			kernel->machine->ReadMem(vaddr, 1, &memval);
-       			while ((*(char*)&memval) != '\0') {
-				writeDone->P() ;
 
-				kernel->synchConsoleOut->PutChar(*(char*)&memval);
+			kernel->machine->ReadMem(vaddr, 1, &memval);
+			while ((*(char *)&memval) != '\0')
+			{
+
+				kernel->synchConsoleOut->PutChar(*(char *)&memval);
 				vaddr++;
 
 				kernel->machine->ReadMem(vaddr, 1, &memval);
 			}
-			
+
 			IncreasePC();
 			return;
 		}
-			break;
-			
+		break;
+
 		default:
 			cerr << "Unexpected system call " << type << "\n";
 			break;
