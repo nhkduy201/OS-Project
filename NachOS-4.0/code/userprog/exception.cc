@@ -179,7 +179,7 @@ void ExceptionHandler(ExceptionType which)
 			//SysReadChar((char *)kernel->machine->ReadRegister(4));
 			// Debug
 
-			//Read the char into a value
+			//Read the char into a value c
 			int c;
 			kernel->machine->ReadMem(kernel->machine->ReadRegister(4), 1, &c);
 			

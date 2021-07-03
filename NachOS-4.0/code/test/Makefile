@@ -112,7 +112,9 @@ ifeq ($(hosttype),unknown)
 PROGRAMS = unknownhost
 else
 # change this if you create a new test program!
-PROGRAMS = readstring printnum add halt shell matmult sort segments readnum printchar printstring
+PROGRAMS = readstring printnum add halt shell matmult\
+			sort segments printchar printstring\
+			readchar readnum 
 endif
 
 all: $(PROGRAMS)
@@ -133,12 +135,12 @@ add: add.o start.o
 	$(LD) $(LDFLAGS) start.o add.o -o add.coff
 	$(COFF2NOFF) add.coff add
 
-readnum.o: readnum.c
-	$(CC) $(CFLAGS) -c readnum.c
+# readnum.o: readnum.c
+# 	$(CC) $(CFLAGS) -c readnum.c
 
-readnum: readnum.o start.o
-	$(LD) $(LDFLAGS) start.o readnum.o -o readnum.coff
-	../bin/coff2noff readnum.coff readnum
+# readnum: readnum.o start.o
+# 	$(LD) $(LDFLAGS) start.o readnum.o -o readnum.coff
+# 	../bin/coff2noff readnum.coff readnum
 
 printnum.o: printnum.c
 	$(CC) $(CFLAGS) -c printnum.c
@@ -153,6 +155,13 @@ readstring.o: readstring.c
 readstring: readstring.o start.o
 	$(LD) $(LDFLAGS) start.o readstring.o -o readstring.coff
 	$(COFF2NOFF) readstring.coff readstring
+
+readchar.o: readchar.c
+	$(CC) $(CFLAGS) -c readchar.c
+
+readchar: readchar.o start.o
+	$(LD) $(LDFLAGS) start.o readchar.o -o readchar.coff
+	$(COFF2NOFF) readchar.coff readchar
 
 printchar.o: printchar.c
 	$(CC) $(CFLAGS) -c printchar.c
