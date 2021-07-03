@@ -87,7 +87,7 @@ void ReadString(char *buffer, int lenght);
 
 /* Print string */
 
-void PrintString(char *c, int length);
+void PrintString(char *c);
 
 /* Random Number */
 
