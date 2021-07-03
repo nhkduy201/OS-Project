@@ -58,8 +58,8 @@ Add:
 	j 	$31
 	.end Add
 
-	.globl ReadNum
-	.ent ReadNum
+	.globl PrintNum
+	.ent PrintNum
 ReadNum:
 	addiu $2,$0,SC_ReadNum
 	syscall
@@ -81,22 +81,6 @@ ReadString:
 	syscall
 	j 	$31
 	.end ReadString
-
-	.globl	ReadChar
-	.ent	ReadChar
-ReadChar:
-	addiu $2,$0,SC_ReadChar
-	syscall
-	j 	$31
-	.end ReadChar
-
-	.globl Exit
-	.ent	Exit
-Exit:
-	addiu $2,$0,SC_Exit
-	syscall
-	j	$31
-	.end Exit
 	
 	.globl PrintChar
 	.ent PrintChar
@@ -113,6 +97,14 @@ PrintString:
 	syscall
 	j 	$31
 	.end PrintString
+	
+	.globl Exit
+	.ent	Exit
+Exit:
+	addiu $2,$0,SC_Exit
+	syscall
+	j	$31
+	.end Exit
 
 	.globl Exec
 	.ent	Exec
