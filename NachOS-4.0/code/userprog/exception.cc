@@ -132,7 +132,7 @@ void ExceptionHandler(ExceptionType which)
 			num *= sign;
 			kernel->machine->WriteRegister(2, num);
 			// Debug
-			DEBUG(dbgSys, "The number readed: " num << "\n");
+			DEBUG(dbgSys, "The number readed: " << num << "\n");
 			IncreasePC();
 			return;
 		}
