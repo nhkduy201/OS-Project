@@ -100,10 +100,10 @@ class Machine {
 // Routines callable by the Nachos kernel
     void Run();	 		// Run a user program
 
-    int ReadRegister(int num);	// read the contents of a CPU register
+    int ReadRegister(int num);	// read the contents of a CPU register (num)
 
     void WriteRegister(int num, int value);
-				// store a value into a CPU register
+				// store a value into a CPU register (num)
 
 // Data structures accessible to the Nachos kernel -- main memory and the
 // page table/TLB.

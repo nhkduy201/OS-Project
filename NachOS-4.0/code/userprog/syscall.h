@@ -86,7 +86,7 @@ void ReadString(char *buffer, int lenght);
 
 /* Print string */
 
-void PrintString(char* c, int length);
+void PrintString(char* c/* , int length */);
 
 /* Address space control operations: Exit, Exec, Execv, and Join */
 
