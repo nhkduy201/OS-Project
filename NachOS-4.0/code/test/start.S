@@ -108,6 +108,14 @@ PrintString:
 	
 	.globl Exit
 	.ent	Exit
+RandomNum:
+	addiu $2,$0,SC_RandomNum
+	syscall
+	j 	$31
+	.end RandomNum
+
+	.globl Exit
+	.ent Exit
 Exit:
 	addiu $2,$0,SC_Exit
 	syscall

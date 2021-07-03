@@ -29,6 +29,7 @@
 #include "console.h"
 #include "thread.h"
 #include "synch.h"
+#include "sysdep.h"
 
 //----------------------------------------------------------------------
 // ExceptionHandler
@@ -207,6 +208,18 @@ void ExceptionHandler(ExceptionType which)
 
 				kernel->machine->ReadMem(vaddr, 1, &memval);
 			}
+
+			IncreasePC();
+			return;
+		}
+		break;
+
+		case SC_RandomNum:
+		{
+			int random = RandomNumber();
+			kernel->machine->WriteRegister(2, random);
+
+			DEBUG(dbgSys, char(random));
 
 			IncreasePC();
 			return;
