@@ -53,26 +53,26 @@ main()
     if (arr[0] = '<')
     {
         /* code */
-        for (int i = 0; i < n; i++) {
-        for (int j = 0; j < (n-1); j++) 
+        for (int q = 0; q < n; q++) {
+        for (int w = 0; w < (n-1); w++) 
         {
-	        if (A[j] < A[j + 1]) 
+	        if (A[w] < A[w + 1]) 
             {	/* out of order -> need to swap ! */
-	            tmp = A[j];
-	            A[j] = A[j + 1];
-	            A[j + 1] = tmp;
+	            tmp = A[w];
+	            A[w] = A[w + 1];
+	            A[w + 1] = tmp;
     	    }
         }
         }
     }
     else
     {
-        for (int i = 0; i < n; i++) {
-        for (int j = 0; j < (n-1); j++) {
-	   if (A[j] > A[j + 1]) {	/* out of order -> need to swap ! */
-	      tmp = A[j];
-	      A[j] = A[j + 1];
-	      A[j + 1] = tmp;
+        for (int k = 0; k < n; k++) {
+        for (int l = 0; l < (n-1); l++) {
+	   if (A[l] > A[l + 1]) {	/* out of order -> need to swap ! */
+	      tmp = A[l];
+	      A[l] = A[l + 1];
+	      A[l + 1] = tmp;
     	   }
         }
         }
@@ -93,8 +93,8 @@ main()
     printf("\n");
 #endif /* UNIX_DEBUG */
 
-    for (int i=0; i<n; i++) {
-        if (A[i] != i) {
+    for (int h=0; h<n; h++) {
+        if (A[h] != h) {
             Exit(1);
         }   
     }
