@@ -1,12 +1,13 @@
-/* readnum.c
-  syscall that read a char.
+/* readsnum.c
+  syscall that read a num.
 */
 
 #include "syscall.h"
 
 int main()
 {
-  int c = ReadNum();
+  int n;
+  n = ReadNum();
 
   Halt();
   /* not reached */

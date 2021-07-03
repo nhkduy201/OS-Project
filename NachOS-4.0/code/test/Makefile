@@ -138,7 +138,7 @@ readnum.o: readnum.c
 
 readnum: readnum.o start.o
 	$(LD) $(LDFLAGS) start.o readnum.o -o readnum.coff
-	../bin/coff2noff readnum.coff readnum
+	$(COFF2NOFF) readnum.coff readnum
 
 printnum.o: printnum.c
 	$(CC) $(CFLAGS) -c printnum.c

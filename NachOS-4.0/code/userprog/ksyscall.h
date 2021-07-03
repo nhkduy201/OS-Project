@@ -48,7 +48,6 @@ void SysPrintNum(int number)
     number %= powOfTen;
   }
   kernel->synchConsoleOut->PutChar('\n');
-
 }
 
 void SysReadString(char *buffer, int len)
@@ -73,7 +72,7 @@ void SysReadString(char *buffer, int len)
 //   data = kernel->synchConsoleIn->GetChar();
 
 //   //Record 1 unit (byte) of 'data' into buffer
-//   kernel->machine->WriteMem((int)buffer, 1, (int)data); 
+//   kernel->machine->WriteMem((int)buffer, 1, (int)data);
 // }
 
 #endif /* ! __USERPROG_KSYSCALL_H__ */
