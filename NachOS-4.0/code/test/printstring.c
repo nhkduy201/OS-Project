@@ -7,7 +7,7 @@
 int main()
 {
 
-  PrintString("Hello World");
+  PrintString("Hello",6);
 
   Halt();
   /* not reached */
