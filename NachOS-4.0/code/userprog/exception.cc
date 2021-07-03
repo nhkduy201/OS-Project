@@ -125,7 +125,7 @@ void ExceptionHandler(ExceptionType which)
 				if (char(c) == '\0')
 					break;
 
-				char(c) = bufer[cnt-1];
+				bufer[cnt-1] = char(c);
 				DEBUG(dbgSys, char(c));
 			}
 			
