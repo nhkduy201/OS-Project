@@ -158,16 +158,6 @@ Bitmap::Print() const
     cout << "\n"; 
 }
 
-void
-Bitmap::FetchFrom(OpenFile *file){
-    file->ReadAt((char*)map,numWords*sizeof(unsigned),0); 
-}
-
-void
-Bitmap::WriteBack(OpenFile *file){
-    file->WriteAt((char*)map,numWords*sizeof(unsigned),0); 
-}
-
 //----------------------------------------------------------------------
 // Bitmap::SelfTest
 // 	Test whether this module is working.
