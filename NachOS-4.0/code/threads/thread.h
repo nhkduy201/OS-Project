@@ -88,7 +88,7 @@ class Thread {
 					// must not be running when delete 
 					// is called
     int processID,existStatus;
-    void freeSpace(){
+    void FreeSpace(){
     	if(space!=0) delete space;
     }
 
