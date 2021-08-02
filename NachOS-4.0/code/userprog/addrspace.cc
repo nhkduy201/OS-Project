@@ -20,6 +20,7 @@
 #include "addrspace.h"
 #include "machine.h"
 #include "noff.h"
+#include "bitmap.h"
 
 #ifdef USER_PROGRAM
 #include "synch.h"
