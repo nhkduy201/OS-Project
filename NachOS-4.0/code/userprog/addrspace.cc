@@ -21,6 +21,7 @@
 #include "machine.h"
 #include "noff.h"
 #include "bitmap.h"
+#include "pbitmap.h"
 
 #ifdef USER_PROGRAM
 #include "synch.h"
