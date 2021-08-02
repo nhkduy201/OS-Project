@@ -24,6 +24,14 @@
 #ifdef USER_PROGRAM
 #include "synch.h"
 #include "synchconsole.h"
+extern Machine *machine;
+//extern SynchConsole* gSynchConsole;
+	
+extern Semaphore *addrLock;
+// extern Bitmap *gPhysPageBitMap;
+// extern PTable *pTab;
+// extern STable *semTab;
+#endif
 
 //----------------------------------------------------------------------
 // SwapHeader
