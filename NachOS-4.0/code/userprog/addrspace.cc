@@ -20,7 +20,8 @@
 #include "addrspace.h"
 #include "machine.h"
 #include "noff.h"
-
+#include "synch.h"
+#include "synchconsole.h"
 //----------------------------------------------------------------------
 // SwapHeader
 // 	Do little endian to big endian conversion on the bytes in the 
