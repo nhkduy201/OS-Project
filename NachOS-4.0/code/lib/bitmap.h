@@ -45,6 +45,7 @@ class Bitmap {
     int NumClear() const;	// Return the number of clear bits
 
     void Print() const;		// Print contents of bitmap
+	
     void SelfTest();		// Test whether bitmap is working
     
   protected:

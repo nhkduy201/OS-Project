@@ -158,7 +158,6 @@ Bitmap::Print() const
     cout << "\n"; 
 }
 
-
 //----------------------------------------------------------------------
 // Bitmap::SelfTest
 // 	Test whether this module is working.

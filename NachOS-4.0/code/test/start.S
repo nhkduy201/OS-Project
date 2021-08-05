@@ -106,8 +106,8 @@ PrintString:
 	j 	$31
 	.end PrintString
 	
-	.globl Exit
-	.ent	Exit
+	.globl RandomNum
+	.ent	RandomNum
 RandomNum:
 	addiu $2,$0,SC_RandomNum
 	syscall

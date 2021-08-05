@@ -31,7 +31,6 @@ void SysPrintNum(int number)
   if (number == 0)
   {
     kernel->synchConsoleOut->PutChar('0');
-    kernel->synchConsoleOut->PutChar('\n');
     return;
   }
 
@@ -47,7 +46,6 @@ void SysPrintNum(int number)
     kernel->synchConsoleOut->PutChar(char(48 + number / powOfTen));
     number %= powOfTen;
   }
-  kernel->synchConsoleOut->PutChar('\n');
 }
 
 void SysReadString(char *buffer, int len)

@@ -20,6 +20,20 @@
 #include "addrspace.h"
 #include "machine.h"
 #include "noff.h"
+#include "bitmap.h"
+#include "pbitmap.h"
+
+#ifdef USER_PROGRAM
+#include "synch.h"
+#include "synchconsole.h"
+extern Machine *machine;
+//extern SynchConsole* gSynchConsole;
+	
+extern Semaphore *addrLock;
+// extern Bitmap *gPhysPageBitMap;
+// extern PTable *pTab;
+// extern STable *semTab;
+#endif
 
 //----------------------------------------------------------------------
 // SwapHeader
