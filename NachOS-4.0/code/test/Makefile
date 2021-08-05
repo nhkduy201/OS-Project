@@ -189,6 +189,27 @@ randomnum: randomnum.o start.o
 	$(LD) $(LDFLAGS) start.o randomnum.o -o randomnum.coff
 	$(COFF2NOFF) randomnum.coff randomnum
 
+ping.o: ping.c
+	$(CC) $(CFLAGS) -c ping.c
+
+ping: ping.o start.o
+	$(LD) $(LDFLAGS) start.o ping.o -o ping.coff
+	$(COFF2NOFF) ping.coff ping
+
+pong.o: pong.c
+	$(CC) $(CFLAGS) -c pong.c
+
+pong: pong.o start.o
+	$(LD) $(LDFLAGS) start.o pong.o -o pong.coff
+	$(COFF2NOFF) pong.coff pong
+
+scheduler.o: scheduler.c
+	$(CC) $(CFLAGS) -c scheduler.c
+
+scheduler: scheduler.o start.o
+	$(LD) $(LDFLAGS) start.o scheduler.o -o scheduler.coff
+	$(COFF2NOFF) scheduler.coff scheduler
+
 shell.o: shell.c
 	$(CC) $(CFLAGS) -c shell.c
 shell: shell.o start.o
