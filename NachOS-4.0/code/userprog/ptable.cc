@@ -162,7 +162,7 @@ int PTable::ExitUpdate(int exitcode)
 // Find free slot in order to save the new process infom
 int PTable::GetFreeSlot()
 {
-	return bm->Find();
+	return bm->FindAndSet();
 }
 
 // Check if Process ID is Exist
