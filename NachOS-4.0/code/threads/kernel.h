@@ -26,9 +26,9 @@ class SynchConsoleInput;
 class SynchConsoleOutput;
 class SynchDisk;
 
-Semaphore *addrLock; // semaphore
-BitMap *gPhysPageBitMap; // quan ly cac frame 
-PTable *pTab; // quan ly bang tien trinh
+extern Semaphore *addrLock; // semaphore
+extern BitMap *gPhysPageBitMap; // quan ly cac frame 
+extern PTable *pTab; // quan ly bang tien trinh
 
 class Kernel {
   public:
@@ -49,14 +49,14 @@ class Kernel {
 // These are public for notational convenience; really, 
 // they're global variables used everywhere.
 
-    Thread *currentThread;	// the thread holding the CPU
-    Scheduler *scheduler;	// the ready list
-    Interrupt *interrupt;	// interrupt status
-    Statistics *stats;		// performance metrics
+    extern Thread *currentThread;	// the thread holding the CPU
+    extern Scheduler *scheduler;	// the ready list
+    extern Interrupt *interrupt;	// interrupt status
+    extern Statistics *stats;		// performance metrics
     Alarm *alarm;		// the software alarm clock    
     Machine *machine;           // the simulated CPU
-    SynchConsoleInput *synchConsoleIn;
-    SynchConsoleOutput *synchConsoleOut;
+    extern SynchConsoleInput *synchConsoleIn;
+    extern SynchConsoleOutput *synchConsoleOut;
     SynchDisk *synchDisk;
     FileSystem *fileSystem;     
     PostOfficeInput *postOfficeIn;
