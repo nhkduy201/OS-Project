@@ -18,6 +18,23 @@
 #include "synchdisk.h"
 #include "post.h"
 
+Thread *currentThread;			// the thread we are running now
+Thread *threadToBeDestroyed;  		// the thread that just finished
+Scheduler *scheduler;			// the ready list
+Interrupt *interrupt;			// interrupt status
+Statistics *stats;			// performance metrics
+Timer *timer;				// the hardware timer device,
+					// for invoking context switches
+#ifdef USER_PROGRAM	// requires either FILESYS or FILESYS_STUB
+Machine *machine;	// user program memory and registers
+SynchConsoleInput *synchConsoleIn;
+SynchConsoleOutput *synchConsoleOut;
+Semaphore *addrLock;	// semaphore
+BitMap *gPhysPageBitMap;	// quan ly cac frame
+PTable *pTab;		// quan ly bang tien trinh
+STable *semTab;		// quan ly semaphore
+#endif
+
 //----------------------------------------------------------------------
 // Kernel::Kernel
 // 	Interpret command line arguments in order to determine flags 
