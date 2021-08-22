@@ -19,6 +19,7 @@
 #include "filesys.h"
 #include "machine.h"
 #include "stable.h"
+#include "ptable.h"
 
 class PostOfficeInput;
 class PostOfficeOutput;
@@ -26,19 +27,30 @@ class SynchConsoleInput;
 class SynchConsoleOutput;
 class SynchDisk;
 
-extern Semaphore *addrLock; // semaphore
-extern BitMap *gPhysPageBitMap; // quan ly cac frame 
-extern PTable *pTab; // quan ly bang tien trinh
+// extern Semaphore *addrLock; // semaphore
+// extern BitMap *gPhysPageBitMap; // quan ly cac frame 
+// extern PTable *pTab; // quan ly bang tien trinh
 
-extern Thread *currentThread;	// the thread holding the CPU
-extern Scheduler *scheduler;	// the ready list
-extern Interrupt *interrupt;	// interrupt status
-extern Statistics *stats;		// performance metrics
-extern SynchConsoleInput *synchConsoleIn;
-extern SynchConsoleOutput *synchConsoleOut;
+// extern Thread *currentThread;	// the thread holding the CPU
+// extern Scheduler *scheduler;	// the ready list
+// extern Interrupt *interrupt;	// interrupt status
+// extern Statistics *stats;		// performance metrics
+// extern SynchConsoleInput *synchConsoleIn;
+// extern SynchConsoleOutput *synchConsoleOut;
 
 class Kernel {
   public:
+     Semaphore *addrLock; // semaphore
+     Bitmap *gPhysPageBitMap; // quan ly cac frame 
+     PTable *pTab; // quan ly bang tien trinh
+
+     Thread *currentThread;	// the thread holding the CPU
+     Scheduler *scheduler;	// the ready list
+     Interrupt *interrupt;	// interrupt status
+     Statistics *stats;		// performance metrics
+     SynchConsoleInput *synchConsoleIn;
+     SynchConsoleOutput *synchConsoleOut;
+
     Kernel(int argc, char **argv);
     				// Interpret command line arguments
     ~Kernel();		        // deallocate the kernel

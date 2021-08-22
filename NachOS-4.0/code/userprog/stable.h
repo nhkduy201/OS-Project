@@ -47,7 +47,7 @@ public:
 class STable
 {
 private:
-	BitMap* bm;	// quản lý slot trống
+	Bitmap* bm;	// quản lý slot trống
 	Sem* semTab[MAX_SEMAPHORE];	// quản lý tối đa 10 đối tượng Sem
 public:
 	//khởi tạo size đối tượng Sem để quản lý 10 Semaphore. Gán giá trị ban đầu là null

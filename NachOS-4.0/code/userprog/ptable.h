@@ -11,7 +11,7 @@ class PTable
 {
 private:
     int psize;
-    BitMap *bm;
+    Bitmap *bm;
     PCB *pcb[MAX_PROCESS];
 
     Semaphore *bmsem;
@@ -30,4 +30,5 @@ public:
     void Remove(int pid);
 
     char *GetFileName(int id);
+};
 #endif // PTABLE_H

@@ -17,6 +17,7 @@
 #include "synchconsole.h"
 #include "synchdisk.h"
 #include "post.h"
+#include "ptable.h"
 
 Thread *currentThread;			// the thread we are running now
 Thread *threadToBeDestroyed;  		// the thread that just finished
@@ -119,7 +120,7 @@ Kernel::Initialize()
     synchConsoleOut = new SynchConsoleOutput(consoleOut); // output to stdout
 	
     addrLock = new Semaphore("addrLock", 1);
-    gPhysPageBitMap = new BitMap(256);
+    gPhysPageBitMap = new Bitmap(256);
     pTab = new PTable(10);
     semTab = new STable();
 	
