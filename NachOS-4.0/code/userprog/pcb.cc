@@ -1,3 +1,4 @@
+// @@ -0,0 +1,98 @@
 #include "pcb.h"
 #include "utility.h"
 #include "system.h"
@@ -92,7 +93,8 @@ int PCB::Exec(char *filename, int id)
 	}
 	this->thread->processID = id;
 	this->parentID = currentThread->processID;
-	this->thread->Fork(StartProcess_2, id);
+    // startProcess_2 = StartProcess_2;
+	this->thread->Fork(StartProcess_2, &id);
 	multex->V();
 	return id;
 }

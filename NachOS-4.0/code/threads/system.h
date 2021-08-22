@@ -10,7 +10,7 @@
 #include "timer.h"
 #include "bitmap.h"
 #include "ptable.h"
-#include "stable.h"
+// #include "stable.h"
 
 extern void Initialize(int argc, char **argv);
 extern void Cleanup();
@@ -24,7 +24,7 @@ extern Timer *timer;
 
 #ifdef USER_PROGRAM
 #include "machine.h"
-#include "synchcons.h"
+#include "../userprog/synchconsole.h"   //synchconsole.h"
 #include "synch.h"
 extern Machine *machine;
 extern SynchConsole *gSynchConsole;
