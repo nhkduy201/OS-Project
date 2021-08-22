@@ -5,7 +5,27 @@
 #include "thread.h"
 #include "addrspace.h"
 
-extern void StartProcess_2(int id);
+void StartProcess_2(int id)
+{
+    char* fileName = pTab->GetFileName(id);
+
+    AddrSpace *space;
+    space = new AddrSpace(fileName);
+
+	if(space == NULL)
+	{
+		printf("\nPCB::Exec : Can't create AddSpace.");
+		return;
+	}
+
+    currentThread->space = space;
+
+    space->InitRegisters();		
+    space->RestoreState();		
+
+    machine->Run();		
+    ASSERT(FALSE);		
+}
 
 PCB::PCB(int id)
 {
