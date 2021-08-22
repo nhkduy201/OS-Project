@@ -92,7 +92,7 @@ AddrSpace::~AddrSpace()
    }
    delete pageTable;
 }
-/*
+
 AddrSpace::AddrSpace()
 {
     pageTable = new TranslationEntry[NumPhysPages];
@@ -109,7 +109,7 @@ AddrSpace::AddrSpace()
     bzero(kernel->machine->mainMemory, MemorySize);
 
 }
-*/
+
 //----------------------------------------------------------------------
 // AddrSpace::~AddrSpace
 // 	Dealloate an address space.
@@ -171,7 +171,7 @@ AddrSpace::Load(char *fileName)
 						// virtual memory
 
 // <<<<<<< HEAD
-    /*AddrSpace::*/AddrSpace();
+    //*AddrSpace::*/AddrSpace();
 // =======
     pageTable = new TranslationEntry[numPagesNumPhysPages];
     for (unsigned int i = 0, idx = 0; i < numPagesNumPhysPages; i++) {
