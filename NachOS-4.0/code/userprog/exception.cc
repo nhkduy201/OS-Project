@@ -80,6 +80,34 @@ void ExceptionHandler(ExceptionType which)
 	case SyscallException:
 		switch (type)
 		{
+		case SC_Exec:
+			DEBUG(dbgSys, "Exec");
+			int virtAddr;
+			virtAddr = kernel->machine->ReadRegister(4);
+			char buf[255];
+			bzero(buf, 255);
+			sprintf(buf, "p%d", processID );
+			Thread* mythread;
+			// I
+			mythread = new Thread(buf);
+			mythread->processID  = processID++;
+			kernel->machine->ReadRegister(4) << "\n";
+			mythread->space=kernel->currentThread->space;
+			/*j mythread->SaveUserState();
+			kernel->currentThread->SelfTest();
+			//kernel->currentThread=thread;
+			// mythread->Fork((VoidFunctionPtr) SimpleThread, (void *) 1);
+			// kernel->currentThread->Yield();
+			// kernel->machine->WriteRegister(2,processID -1);
+			Modify return point */
+			// set previous programm counter (debugging only)
+
+			kernel->machine->WriteRegister(PrevPCReg, kernel->machine->ReadRegister(PCReg));
+			/* set programm counter to next instruction (all Instructions are 4 byte wide)*/
+			kernel->machine->WriteRegister(PCReg, kernel->machine->ReadRegister(PCReg) + 4);
+			/* set next programm counter for brach execution*/
+			kernel->machine->WriteRegister(NextPCReg, kernel->machine->ReadRegister(PCReg) + 4);
+			break;
 		case SC_Halt:
 			DEBUG(dbgSys, "Shutdown, initiated by user program.\n");
 
