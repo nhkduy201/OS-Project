@@ -1,7 +1,7 @@
 // @@ -0,0 +1,98 @@
 #include "pcb.h"
 #include "utility.h"
-#include "system.h"
+#include "kernel.h"
 #include "thread.h"
 #include "addrspace.h"
 

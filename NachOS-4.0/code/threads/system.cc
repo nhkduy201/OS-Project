@@ -1,5 +1,5 @@
 #include "copyright.h"
-#include "system.h"
+#include "kernel.h"
 
 Thread *currentThread;
 Thread *threadToBeDestroyed;
