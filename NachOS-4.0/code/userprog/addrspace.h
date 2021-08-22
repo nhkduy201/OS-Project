@@ -23,7 +23,7 @@ class AddrSpace {
     int NumFreePages;
     bool PhyPageStatus[NumPhysPages]={TRUE};
     int NumFreePages = NumPhysPages;
-
+    AddrSpace(char* filename);
     AddrSpace(OpenFile *executable);			// Create an address space.
     ~AddrSpace();			// De-allocate an address space
 
