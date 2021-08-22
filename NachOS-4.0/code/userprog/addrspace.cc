@@ -132,7 +132,7 @@ AddrSpace::AddrSpace(OpenFile *executable)
 	// for now, virtual page # = phys page #
 	pageTable[i].virtualPage = i;
 
-	pageTable[i].physicalPage = gPhysPageBitMap->Find();
+	pageTable[i].physicalPage = gPhysPageBitMap->FindAndSet();
 
 	pageTable[i].valid = TRUE;
 	pageTable[i].use = FALSE;
@@ -209,7 +209,7 @@ AddrSpace::AddrSpace(char* filename)
     for (i = 0; i < numPages; i++)
     {
     	pageTable[i].virtualPage = i;	// for now, virtual page # = phys page #
-    	pageTable[i].physicalPage = gPhysPageBitMap->Find();
+    	pageTable[i].physicalPage = gPhysPageBitMap->FindAndSet();
 	    pageTable[i].valid = TRUE;
 	    pageTable[i].use = FALSE;
 	    pageTable[i].dirty = FALSE;
