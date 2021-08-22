@@ -154,6 +154,8 @@ AddrSpace::Load(char *fileName)
 						// at least until we have
 						// virtual memory
 
+    AddrSpace::AddrSpace()
+    
     DEBUG(dbgAddr, "Initializing address space: " << numPages << ", " << size);
 
 // then, copy in the code and data segments into memory
