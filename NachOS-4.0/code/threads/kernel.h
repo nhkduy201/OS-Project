@@ -30,6 +30,13 @@ extern Semaphore *addrLock; // semaphore
 extern BitMap *gPhysPageBitMap; // quan ly cac frame 
 extern PTable *pTab; // quan ly bang tien trinh
 
+extern Thread *currentThread;	// the thread holding the CPU
+extern Scheduler *scheduler;	// the ready list
+extern Interrupt *interrupt;	// interrupt status
+extern Statistics *stats;		// performance metrics
+extern SynchConsoleInput *synchConsoleIn;
+extern SynchConsoleOutput *synchConsoleOut;
+
 class Kernel {
   public:
     Kernel(int argc, char **argv);
@@ -49,14 +56,8 @@ class Kernel {
 // These are public for notational convenience; really, 
 // they're global variables used everywhere.
 
-    extern Thread *currentThread;	// the thread holding the CPU
-    extern Scheduler *scheduler;	// the ready list
-    extern Interrupt *interrupt;	// interrupt status
-    extern Statistics *stats;		// performance metrics
     Alarm *alarm;		// the software alarm clock    
     Machine *machine;           // the simulated CPU
-    extern SynchConsoleInput *synchConsoleIn;
-    extern SynchConsoleOutput *synchConsoleOut;
     SynchDisk *synchDisk;
     FileSystem *fileSystem;     
     PostOfficeInput *postOfficeIn;
