@@ -81,18 +81,34 @@ SwapHeader (NoffHeader *noffH)
 
 AddrSpace::AddrSpace()
 {
-    pageTable = new TranslationEntry[NumPhysPages];
-    for (int i = 0; i < NumPhysPages; i++) {
+    // pageTable = new TranslationEntry[NumPhysPages];
+    // for (int i = 0; i < NumPhysPages; i++) {
+	// pageTable[i].virtualPage = i;	// for now, virt page # = phys page #
+	// pageTable[i].physicalPage = i;
+	// pageTable[i].valid = TRUE;
+	// pageTable[i].use = FALSE;
+	// pageTable[i].dirty = FALSE;
+	// pageTable[i].readOnly = FALSE;  
+    // }
+    
+    // // zero out the entire address space
+    // bzero(kernel->machine->mainMemory, MemorySize);
+
+    pageTable = new TranslationEntry[numPagesNumPhysPages];
+    for (unsigned int i = 0, idx = 0; i < numPagesNumPhysPages; i++) {
 	pageTable[i].virtualPage = i;	// for now, virt page # = phys page #
-	pageTable[i].physicalPage = i;
+	while(idx < NumPhysPages && AddrSpace::PhyPageStatus[idx] == TRUE) idx++;
+	    
+	AddrSpace::PhyPageStatus[idx]=TRUE;
+	AddrSpace::NumFreePages--;
+	// zero out the entire address space
+	bzero(kernel->machine->mainMemory, MemorySize);
+	pageTable[i].physicalPage = idx;
 	pageTable[i].valid = TRUE;
 	pageTable[i].use = FALSE;
 	pageTable[i].dirty = FALSE;
 	pageTable[i].readOnly = FALSE;  
     }
-    
-    // zero out the entire address space
-    bzero(kernel->machine->mainMemory, MemorySize);
 }
 
 //----------------------------------------------------------------------
@@ -155,7 +171,7 @@ AddrSpace::Load(char *fileName)
 						// virtual memory
 
     AddrSpace::AddrSpace()
-    
+
     DEBUG(dbgAddr, "Initializing address space: " << numPages << ", " << size);
 
 // then, copy in the code and data segments into memory
