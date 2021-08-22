@@ -81,27 +81,61 @@ void ExceptionHandler(ExceptionType which)
 		switch (type)
 		{
 		case SC_Exec:
-			DEBUG(dbgSys, "Exec");
+			// Input: vi tri int
+			// Output: Fail return -1, Success: return id cua thread dang chay
+			// SpaceId Exec(char *name);
 			int virtAddr;
-			virtAddr = kernel->machine->ReadRegister(4);
-			char buf[255];
-			bzero(buf, 255);
-			sprintf(buf, "p%d", processID );
-			Thread* mythread;
-			// I
-			mythread = new Thread(buf);
-			mythread->processID  = processID++;
-			kernel->machine->ReadRegister(4) << "\n";
-			mythread->space=kernel->currentThread->space;
-			/*j mythread->SaveUserState();
-			kernel->currentThread->SelfTest();
-			//kernel->currentThread=thread;
-			// mythread->Fork((VoidFunctionPtr) SimpleThread, (void *) 1);
-			// kernel->currentThread->Yield();
-			// kernel->machine->WriteRegister(2,processID -1);
-			Modify return point */
-			IncreasePC()
-			break;
+			virtAddr = machine->ReadRegister(4);	// doc dia chi ten chuong trinh tu thanh ghi r4
+			char* name;
+			name = User2System(virtAddr, MaxFileLength + 1); // Lay ten chuong trinh, nap vao kernel
+	
+			if(name == NULL)
+			{
+				DEBUG('a', "\n Not enough memory in System");
+				printf("\n Not enough memory in System");
+				machine->WriteRegister(2, -1);
+				//IncreasePC();
+				return;
+			}
+			OpenFile *oFile = fileSystem->Open(name);
+			if (oFile == NULL)
+			{
+				printf("\nExec:: Can't open this file.");
+				machine->WriteRegister(2,-1);
+				IncreasePC();
+				return;
+			}
+
+			delete oFile;
+
+			// Return child process id
+			int id = pTab->ExecUpdate(name); 
+			machine->WriteRegister(2,id);
+
+			delete[] name;	
+			IncreasePC();
+			return;
+// 			DEBUG(dbgSys, "Exec");
+// 			int virtAddr;
+// 			virtAddr = kernel->machine->ReadRegister(4);
+// 			char buf[255];
+// 			bzero(buf, 255);
+// 			sprintf(buf, "p%d", processID );
+// 			Thread* mythread;
+// 			// I
+// 			mythread = new Thread(buf);
+// 			mythread->processID  = processID++;
+// 			kernel->machine->ReadRegister(4) << "\n";
+// 			mythread->space=kernel->currentThread->space;
+// 			/*j mythread->SaveUserState();
+// 			kernel->currentThread->SelfTest();
+// 			//kernel->currentThread=thread;
+// 			// mythread->Fork((VoidFunctionPtr) SimpleThread, (void *) 1);
+// 			// kernel->currentThread->Yield();
+// 			// kernel->machine->WriteRegister(2,processID -1);
+// 			Modify return point */
+// 			IncreasePC()
+// 			break;
 		case SC_Halt:
 			DEBUG(dbgSys, "Shutdown, initiated by user program.\n");
 
