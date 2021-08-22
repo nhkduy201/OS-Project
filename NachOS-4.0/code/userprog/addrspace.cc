@@ -83,16 +83,6 @@ SwapHeader (NoffHeader *noffH)
 //	only uniprogramming, and we have a single unsegmented page table
 //----------------------------------------------------------------------
 
-AddrSpace::~AddrSpace()
-{
-   int i;	
-   for (i=0; i<numPages; i++){
-	AddrSpace::PhyPageStatus[pageTable[i].physicalPage]=FALSE;
-	AddrSpace::NumFreePages++;
-   }
-   delete pageTable;
-}
-
 AddrSpace::AddrSpace()
 {
     pageTable = new TranslationEntry[NumPhysPages];
@@ -117,6 +107,11 @@ AddrSpace::AddrSpace()
 
 AddrSpace::~AddrSpace()
 {
+   int i;	
+   for (i=0; i<numPages; i++){
+	AddrSpace::PhyPageStatus[pageTable[i].physicalPage]=FALSE;
+	AddrSpace::NumFreePages++;
+   }
    delete pageTable;
 }
 
