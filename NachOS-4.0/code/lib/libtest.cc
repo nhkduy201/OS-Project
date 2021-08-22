@@ -66,7 +66,7 @@ static char *hashTestVector[] = { "0", "1", "2", "3", "4", "5", "6",
 
 void
 LibSelfTest () {
-    Bitmap *map = new Bitmap(200);
+    BitMap *map = new BitMap(200);
     List<int> *list = new List<int>;
     SortedList<int> *sortList = new SortedList<int>(IntCompare);
     HashTable<int, char *> *hashTable = 

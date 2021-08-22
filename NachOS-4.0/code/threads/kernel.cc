@@ -120,7 +120,7 @@ Kernel::Initialize()
     synchConsoleOut = new SynchConsoleOutput(consoleOut); // output to stdout
 	
     addrLock = new Semaphore("addrLock", 1);
-    gPhysPageBitMap = new Bitmap(256);
+    gPhysPageBitMap = new BitMap(256);
     pTab = new PTable(10);
     semTab = new STable();
 	

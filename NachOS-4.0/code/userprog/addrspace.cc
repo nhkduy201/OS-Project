@@ -30,7 +30,7 @@ extern Machine *machine;
 //extern SynchConsole* gSynchConsole;
 	
 extern Semaphore *addrLock;
-// extern Bitmap *gPhysPageBitMap;
+// extern BitMap *gPhysPageBitMap;
 // extern PTable *pTab;
 // extern STable *semTab;
 #endif

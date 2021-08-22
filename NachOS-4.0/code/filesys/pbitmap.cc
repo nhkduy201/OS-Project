@@ -19,7 +19,7 @@
 //      This constructor does not initialize the bitmap from a disk file
 //----------------------------------------------------------------------
 
-PersistentBitmap::PersistentBitmap(int numItems):Bitmap(numItems) 
+PersistentBitmap::PersistentBitmap(int numItems):BitMap(numItems) 
 { 
 }
 
@@ -35,7 +35,7 @@ PersistentBitmap::PersistentBitmap(int numItems):Bitmap(numItems)
 //      This constructor initializes the bitmap from a disk file
 //----------------------------------------------------------------------
 
-PersistentBitmap::PersistentBitmap(OpenFile *file, int numItems):Bitmap(numItems) 
+PersistentBitmap::PersistentBitmap(OpenFile *file, int numItems):BitMap(numItems) 
 { 
     // map has already been initialized by the BitMap constructor,
     // but we will just overwrite that with the contents of the

@@ -18,7 +18,7 @@
 //	"numItems" is the number of bits in the bitmap.
 //----------------------------------------------------------------------
 
-Bitmap::Bitmap(int numItems) 
+BitMap::BitMap(int numItems) 
 { 
     int i;
 
@@ -40,7 +40,7 @@ Bitmap::Bitmap(int numItems)
 // 	De-allocate a bitmap.
 //----------------------------------------------------------------------
 
-Bitmap::~Bitmap()
+BitMap::~BitMap()
 { 
     delete map;
 }
@@ -53,7 +53,7 @@ Bitmap::~Bitmap()
 //----------------------------------------------------------------------
 
 void
-Bitmap::Mark(int which) 
+BitMap::Mark(int which) 
 { 
     ASSERT(which >= 0 && which < numBits);
 
@@ -70,7 +70,7 @@ Bitmap::Mark(int which)
 //----------------------------------------------------------------------
 
 void 
-Bitmap::Clear(int which) 
+BitMap::Clear(int which) 
 {
     ASSERT(which >= 0 && which < numBits);
 
@@ -87,7 +87,7 @@ Bitmap::Clear(int which)
 //----------------------------------------------------------------------
 
 bool 
-Bitmap::Test(int which) const
+BitMap::Test(int which) const
 {
     ASSERT(which >= 0 && which < numBits);
     
@@ -108,7 +108,7 @@ Bitmap::Test(int which) const
 //----------------------------------------------------------------------
 
 int 
-Bitmap::FindAndSet() 
+BitMap::FindAndSet() 
 {
     for (int i = 0; i < numBits; i++) {
 	if (!Test(i)) {
@@ -126,7 +126,7 @@ Bitmap::FindAndSet()
 //----------------------------------------------------------------------
 
 int 
-Bitmap::NumClear() const
+BitMap::NumClear() const
 {
     int count = 0;
 
@@ -147,7 +147,7 @@ Bitmap::NumClear() const
 //----------------------------------------------------------------------
 
 void
-Bitmap::Print() const
+BitMap::Print() const
 {
     cout << "Bitmap set:\n"; 
     for (int i = 0; i < numBits; i++) {
@@ -164,7 +164,7 @@ Bitmap::Print() const
 //----------------------------------------------------------------------
 
 void
-Bitmap::SelfTest() 
+BitMap::SelfTest() 
 {
     int i;
     

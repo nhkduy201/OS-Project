@@ -21,7 +21,7 @@
 // the behavior of a bitmap (see bitmap.h), adding the ability to
 // be read from and stored to the disk.
 
-class PersistentBitmap : public Bitmap {
+class PersistentBitmap : public BitMap {
   public:
     PersistentBitmap(OpenFile *file,int numItems); //initialize bitmap from disk 
     PersistentBitmap(int numItems); // or don't...

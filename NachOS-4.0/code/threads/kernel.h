@@ -41,7 +41,7 @@ class SynchDisk;
 class Kernel {
   public:
      Semaphore *addrLock; // semaphore
-     Bitmap *gPhysPageBitMap; // quan ly cac frame 
+     BitMap *gPhysPageBitMap; // quan ly cac frame 
      PTable *pTab; // quan ly bang tien trinh
 
      Thread *currentThread;	// the thread holding the CPU
