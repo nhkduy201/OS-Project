@@ -43,6 +43,7 @@
 #define SC_ReadNum 47
 #define SC_ReadChar 48
 #define SC_RandomNum 49
+#define SC_Exec 50
 
 #ifndef IN_ASM
 
