@@ -20,6 +20,10 @@
 
 class AddrSpace {
   public:
+    int NumFreePages;
+    bool PhyPageStatus[NumPhysPages]={TRUE};
+    int NumFreePages = NumPhysPages;
+
     AddrSpace();			// Create an address space.
     ~AddrSpace();			// De-allocate an address space
 

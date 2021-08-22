@@ -35,6 +35,10 @@ extern Semaphore *addrLock;
 // extern STable *semTab;
 #endif
 
+
+// bool AddrSpace::PhyPageStatus[NumPhysPages]={TRUE};
+// int AddrSpace::NumFreePages= NumPhysPages;
+
 //----------------------------------------------------------------------
 // SwapHeader
 // 	Do little endian to big endian conversion on the bytes in the 
@@ -79,6 +83,16 @@ SwapHeader (NoffHeader *noffH)
 //	only uniprogramming, and we have a single unsegmented page table
 //----------------------------------------------------------------------
 
+AddrSpace::~AddrSpace()
+{
+   int i;	
+   for (i=0; i<numPages; i++){
+	AddrSpace::PhyPageStatus[pageTable[i].physicalPage]=FALSE;
+	AddrSpace::NumFreePages++;
+   }
+   delete pageTable;
+}
+/*
 AddrSpace::AddrSpace()
 {
     // pageTable = new TranslationEntry[NumPhysPages];
@@ -110,7 +124,7 @@ AddrSpace::AddrSpace()
 	pageTable[i].readOnly = FALSE;  
     }
 }
-
+*/
 //----------------------------------------------------------------------
 // AddrSpace::~AddrSpace
 // 	Dealloate an address space.
@@ -165,12 +179,13 @@ AddrSpace::Load(char *fileName)
     numPages = divRoundUp(size, PageSize);
     size = numPages * PageSize;
 
-    ASSERT(numPages <= NumPhysPages);		// check we're not trying
+    // ASSERT(numPages <= NumPhysPages);	
+    ASSERT(numPages <= AddrSpace::NumFreePages);	// check we're not trying
 						// to run anything too big --
 						// at least until we have
 						// virtual memory
 
-    AddrSpace::AddrSpace()
+    /*AddrSpace::*/AddrSpace();
 
     DEBUG(dbgAddr, "Initializing address space: " << numPages << ", " << size);
 
