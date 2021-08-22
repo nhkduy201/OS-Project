@@ -112,7 +112,7 @@ ifeq ($(hosttype),unknown)
 PROGRAMS = unknownhost
 else
 # change this if you create a new test program!
-PROGRAMS = readchar readstring printnum add halt shell matmult segments readnum printchar printstring randomnum ping pong
+PROGRAMS = readchar readstring printnum add halt shell matmult segments readnum printchar printstring randomnum ping pong scheduler
 endif
 
 all: $(PROGRAMS)
