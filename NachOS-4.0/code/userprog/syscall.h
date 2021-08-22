@@ -189,7 +189,7 @@ int Close(OpenFileId id);
  * Return a positive ThreadId on success, negative error code on failure
  */
 ThreadId ThreadFork(void (*func)());
-
+void Fork(void(*func)());
 /* Yield the CPU to another runnable thread, whether in this address space 
  * or not. 
  */
