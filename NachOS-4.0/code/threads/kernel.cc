@@ -117,6 +117,12 @@ Kernel::Initialize()
     machine = new Machine(debugUserProg);
     synchConsoleIn = new SynchConsoleInput(consoleIn); // input from stdin
     synchConsoleOut = new SynchConsoleOutput(consoleOut); // output to stdout
+	
+    addrLock = new Semaphore("addrLock", 1);
+    gPhysPageBitMap = new BitMap(256);
+    pTab = new PTable(10);
+    semTab = new STable();
+	
     synchDisk = new SynchDisk();    //
 #ifdef FILESYS_STUB
     fileSystem = new FileSystem();
