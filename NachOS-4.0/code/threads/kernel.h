@@ -26,6 +26,10 @@ class SynchConsoleInput;
 class SynchConsoleOutput;
 class SynchDisk;
 
+Semaphore *addrLock; // semaphore
+BitMap *gPhysPageBitMap; // quan ly cac frame 
+PTable *pTab; // quan ly bang tien trinh
+
 class Kernel {
   public:
     Kernel(int argc, char **argv);
