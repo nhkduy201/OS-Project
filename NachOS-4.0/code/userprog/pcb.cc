@@ -18,7 +18,7 @@ void StartProcess_2(int id)
 		return;
 	}
 
-    currentThread->space = space;
+    kernel->currentThread->space = space;
 
     space->InitRegisters();		
     space->RestoreState();		
@@ -32,7 +32,7 @@ PCB::PCB(int id)
 	if (id == 0)
 		this->parentID = -1;
 	else
-		this->parentID = currentThread->processID;
+		this->parentID = kernel->currentThread->processID;
 
 	this->numwait = this->exitcode = this->boolBG = 0;
 	this->thread = NULL;
