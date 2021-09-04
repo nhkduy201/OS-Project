@@ -22,6 +22,7 @@
 #include "noff.h"
 #include "bitmap.h"
 #include "pbitmap.h"
+#include "kernel.h"
 
 #ifdef USER_PROGRAM
 #include "synch.h"
@@ -100,7 +101,7 @@ AddrSpace::AddrSpace(OpenFile *executable)
 
     ASSERT(noffH.noffMagic == NOFFMAGIC);
   
-    addrLock->P();
+    kernel->addrLock->P();
 
     // how big is address space?
     size = noffH.code.size + noffH.initData.size + noffH.uninitData.size 
@@ -113,17 +114,16 @@ AddrSpace::AddrSpace(OpenFile *executable)
     // At least until we have virtual memory
     ASSERT(numPages <= NumPhysPages);
 
-    if(numPages > gPhysPageBitMap->NumClear())
+    if(numPages > kernel->gPhysPageBitMap->NumClear())
     {
 	    printf("\nAddrSpace::Load : not enough memory for new process..!");
 	    numPages = 0;
 	    delete executable;
-	    addrLock->V();
+	    kernel->addrLock->V();
         return;
     }
 
-    DEBUG('a', "Initializing address space, num pages %d, size %d\n", 
-					numPages, size);
+    DEBUG('a', "Initializing address space, num pages " << numPages << ", size " << size);
     
     // first, set up the translation 
     pageTable = new TranslationEntry[numPages];
@@ -132,7 +132,7 @@ AddrSpace::AddrSpace(OpenFile *executable)
 	// for now, virtual page # = phys page #
 	pageTable[i].virtualPage = i;
 
-	pageTable[i].physicalPage = gPhysPageBitMap->FindAndSet();
+	pageTable[i].physicalPage = kernel->gPhysPageBitMap->FindAndSet();
 
 	pageTable[i].valid = TRUE;
 	pageTable[i].use = FALSE;
@@ -142,7 +142,7 @@ AddrSpace::AddrSpace(OpenFile *executable)
 					// pages to be read-only
     }
     
-     addrLock->V();
+     kernel->addrLock->V();
 
     if (noffH.code.size > 0)
     {
@@ -164,7 +164,7 @@ AddrSpace::AddrSpace(char* filename)
     NoffHeader noffH;
     unsigned int i, size;
 
-    OpenFile* executable = fileSystem->Open(filename);
+    OpenFile* executable = kernel->fileSystem->Open(filename);
 
     if (executable == NULL)
     {
@@ -178,7 +178,7 @@ AddrSpace::AddrSpace(char* filename)
     	SwapHeader(&noffH);
     ASSERT(noffH.noffMagic == NOFFMAGIC);
   
- 	addrLock->P();
+ 	kernel->addrLock->P();
 
 	// how big is address space?
     size = noffH.code.size + noffH.initData.size + noffH.uninitData.size 
@@ -189,7 +189,7 @@ AddrSpace::AddrSpace(char* filename)
     numPages = divRoundUp(size, PageSize);
     size = numPages * PageSize;
 
-    int numclear = gPhysPageBitMap->NumClear();
+    int numclear = kernel->gPhysPageBitMap->NumClear();
 
     printf("\n\nSize: %d | numPages: %d | PageSize: %d | Numclear: %d\n\n", size, numPages, PageSize, numclear);  
 
@@ -198,18 +198,19 @@ AddrSpace::AddrSpace(char* filename)
 	    printf("\nAddrSpace::Load : not enough memory for new process");
 	    numPages = 0;
 	    delete executable;
-	    addrLock->V();
+	    kernel->addrLock->V();
     }
 
-    DEBUG('a', "Initializing address space, num pages %d, size %d\n", 
-					numPages, size);
+    // char* prin = "Initializing address space, num pages %d, size %d\n"; 
+
+    DEBUG('a', "Initializing address space, num pages " << numPages << ", size " << size);
     // first, set up the translation 
     pageTable = new TranslationEntry[numPages];
 
     for (i = 0; i < numPages; i++)
     {
     	pageTable[i].virtualPage = i;	// for now, virtual page # = phys page #
-    	pageTable[i].physicalPage = gPhysPageBitMap->FindAndSet();
+    	pageTable[i].physicalPage = kernel->gPhysPageBitMap->FindAndSet();
 	    pageTable[i].valid = TRUE;
 	    pageTable[i].use = FALSE;
 	    pageTable[i].dirty = FALSE;
@@ -219,7 +220,7 @@ AddrSpace::AddrSpace(char* filename)
         printf("Physic Pages %d \n", pageTable[i].physicalPage);
     }
 
-    addrLock->V();
+    kernel->addrLock->V();
 
     // then, copy in the code and data segments into memory
     if (noffH.code.size > 0)
@@ -306,8 +307,8 @@ AddrSpace::Load(char *fileName)
 // <<<<<<< HEAD
     //*AddrSpace::*/AddrSpace();
 // =======
-    pageTable = new TranslationEntry[numPagesNumPhysPages];
-    for (unsigned int i = 0, idx = 0; i < numPagesNumPhysPages; i++) {
+    pageTable = new TranslationEntry[NumPhysPages];
+    for (unsigned int i = 0, idx = 0; i < NumPhysPages; i++) {
 	pageTable[i].virtualPage = i;	// for now, virt page # = phys page #
 	while(idx < NumPhysPages && AddrSpace::PhyPageStatus[idx] == TRUE) idx++;
 	    

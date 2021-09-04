@@ -1,8 +1,9 @@
 /////////////////////////////////////////////////
 // 	DH KHTN - DHQG TPHCM			/
-// 	1512034 Nguyen Dang Binh		/
-// 	1512042 Nguyen Thanh Chung		/
-// 	1512123 Hoang Ngoc Duc			/
+// 	NGUYỄN HUỲNH KHÁNH DUY - 19127377
+//	TÔ VŨ THÁI HÀO - 19127391
+//	NGUYỄN QUANG THUẬN - 19127571
+//	HỒ THIÊN PHƯỚC- 19127517		/
 /////////////////////////////////////////////////
 
 #include "syscall.h"
