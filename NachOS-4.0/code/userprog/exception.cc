@@ -67,7 +67,26 @@ void IncreasePC()
 		kernel->machine->WriteRegister(NextPCReg, kernel->machine->ReadRegister(PCReg) + 4);
 	}
 }
-
+char* User2System(int virtAddr, int limit)
+{
+	int i; //chi so index
+	int oneChar;
+	char* kernelBuf = NULL;
+	kernelBuf = new char[limit + 1]; //can cho chuoi terminal
+	if (kernelBuf == NULL)
+		return kernelBuf;
+		
+	memset(kernelBuf, 0, limit + 1);
+	
+	for (i = 0; i < limit; i++)
+	{
+		kernel->machine->ReadMem(virtAddr + i, 1, &oneChar);
+		kernelBuf[i] = (char)oneChar;
+		if (oneChar == 0)
+			break;
+	}
+	return kernelBuf;
+}
 void ExceptionHandler(ExceptionType which)
 {
 	int type = kernel->machine->ReadRegister(2);
@@ -85,7 +104,7 @@ void ExceptionHandler(ExceptionType which)
 			// Output: Fail return -1, Success: return id cua thread dang chay
 			// SpaceId Exec(char *name);
 			int virtAddr;
-			virtAddr = machine->ReadRegister(4);	// doc dia chi ten chuong trinh tu thanh ghi r4
+			virtAddr = kernel->machine->ReadRegister(4);	// doc dia chi ten chuong trinh tu thanh ghi r4
 			char* name;
 			name = User2System(virtAddr, MaxFileLength + 1); // Lay ten chuong trinh, nap vao kernel
 	
@@ -93,7 +112,7 @@ void ExceptionHandler(ExceptionType which)
 			{
 				DEBUG('a', "\n Not enough memory in System");
 				printf("\n Not enough memory in System");
-				machine->WriteRegister(2, -1);
+				kernel->machine->WriteRegister(2, -1);
 				//IncreasePC();
 				return;
 			}
@@ -101,7 +120,7 @@ void ExceptionHandler(ExceptionType which)
 			if (oFile == NULL)
 			{
 				printf("\nExec:: Can't open this file.");
-				machine->WriteRegister(2,-1);
+				kernel->machine->WriteRegister(2,-1);
 				IncreasePC();
 				return;
 			}
@@ -110,7 +129,7 @@ void ExceptionHandler(ExceptionType which)
 
 			// Return child process id
 			int id = pTab->ExecUpdate(name); 
-			machine->WriteRegister(2,id);
+			kernel->machine->WriteRegister(2,id);
 
 			delete[] name;	
 			IncreasePC();
