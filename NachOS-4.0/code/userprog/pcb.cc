@@ -23,7 +23,7 @@ void StartProcess_2(int id)
     space->InitRegisters();		
     space->RestoreState();		
 
-    machine->Run();		
+    kernel->machine->Run();		
     ASSERT(FALSE);		
 }
 
