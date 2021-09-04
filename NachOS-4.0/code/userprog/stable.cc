@@ -102,5 +102,5 @@ int STable::Signal(char *name)
 
 int STable::FindFreeSlot()
 {
-	return this->bm->Find();
+	return this->bm->FindAndSet();
 }
