@@ -112,7 +112,7 @@ int PCB::Exec(char *filename, int id)
 		return -1;
 	}
 	this->thread->processID = id;
-	this->parentID = currentThread->processID;
+	this->parentID = kernel->currentThread->processID;
     // startProcess_2 = StartProcess_2;
 	this->thread->Fork(StartProcess_2, &id);
 	multex->V();
