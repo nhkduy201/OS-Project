@@ -240,15 +240,15 @@ LIB_O = bitmap.o debug.o libtest.o sysdep.o
 
 
 MACHINE_H = ../machine/callback.h\
-	../machine/interrupt.h\
-	../machine/stats.h\
-	../machine/timer.h\
 	../machine/console.h\
+	../machine/disk.h\
+	../machine/interrupt.h\
 	../machine/machine.h\
 	../machine/mipssim.h\
-	../machine/translate.h\
 	../machine/network.h\
-	../machine/disk.h
+	../machine/stats.h\
+	../machine/timer.h\
+	../machine/translate.h
 
 MACHINE_C = ../machine/interrupt.cc\
 	../machine/stats.cc\
@@ -285,13 +285,19 @@ THREAD_O = alarm.o kernel.o main.o scheduler.o synch.o thread.o
 USERPROG_H = ../userprog/addrspace.h\
 	../userprog/syscall.h\
 	../userprog/synchconsole.h\
-	../userprog/noff.h
+	../userprog/noff.h\
+	../userprog/pcb.h\
+	../userprog/ptable.h\
+	../userprog/stable
 
 USERPROG_C = ../userprog/addrspace.cc\
 	../userprog/exception.cc\
-	../userprog/synchconsole.cc
+	../userprog/synchconsole.cc\
+	../userprog/pcb.cc\
+	../userprog/ptable.cc\
+	../userprog/stable
 
-USERPROG_O = addrspace.o exception.o synchconsole.o
+USERPROG_O = addrspace.o exception.o synchconsole.o pcb.o ptable.o stable.o
 
 FILESYS_H =../filesys/directory.h \
 	../filesys/filehdr.h\
